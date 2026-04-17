@@ -1,0 +1,140 @@
+/* ============================================
+ * Component: Button
+ * Use: <button class="hm-btn hm-btn--primary">Label</button>
+ *
+ * Variants (one required):
+ *   .hm-btn--primary    Hero CTA (teal fill, white text, full-width default)
+ *   .hm-btn--secondary  Outlined (translucent bg, border)
+ *   .hm-btn--ghost      Text-only (accent color, no bg/border)
+ *   .hm-btn--icon       Circle icon button
+ *
+ * Modifiers:
+ *   .hm-btn--sm         Small (44px)
+ *   .hm-btn--md         Medium (48px) [default]
+ *   .hm-btn--lg         Large (52px)
+ *   .hm-btn--block      Full width
+ *   .hm-btn--inline     Auto width (default for secondary/ghost)
+ *
+ * State:
+ *   :hover, :active, :disabled, [aria-disabled="true"]
+ * ============================================ */
+
+.hm-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    font-family: var(--font-body);
+    font-weight: var(--weight-semibold);
+    font-size: var(--text-body);
+    line-height: 1;
+    border: none;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: transform var(--duration-fast) var(--ease),
+                background var(--duration-fast) var(--ease),
+                border-color var(--duration-fast) var(--ease),
+                box-shadow var(--duration-fast) var(--ease);
+    white-space: nowrap;
+}
+
+.hm-btn:active { transform: scale(0.98); }
+.hm-btn:disabled,
+.hm-btn[aria-disabled="true"] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+    pointer-events: none;
+}
+
+/* ---------- Sizes ---------- */
+.hm-btn--sm {
+    height: var(--control-height-sm);
+    padding: 0 var(--space-4);
+    font-size: var(--text-caption);
+    border-radius: var(--radius-sm);
+}
+.hm-btn--md {
+    height: var(--control-height-md);
+    padding: 0 var(--space-5);
+    border-radius: var(--radius-md);
+}
+.hm-btn--lg {
+    height: var(--control-height-lg);
+    padding: 0 var(--space-6);
+    border-radius: var(--radius-md);
+}
+.hm-btn--xl {
+    height: var(--control-height-xl);
+    padding: 0 var(--space-6);
+    border-radius: var(--radius-md);
+}
+
+/* Default size when no modifier present */
+.hm-btn:not(.hm-btn--sm):not(.hm-btn--md):not(.hm-btn--lg):not(.hm-btn--xl):not(.hm-btn--icon) {
+    height: var(--control-height-lg);
+    padding: 0 var(--space-5);
+    border-radius: var(--radius-md);
+}
+
+/* ---------- Width ---------- */
+.hm-btn--block { width: 100%; }
+
+/* ---------- Variant: Primary ---------- */
+.hm-btn--primary {
+    background: var(--color-accent);
+    color: var(--color-text-on-accent);
+    box-shadow: var(--shadow-accent);
+}
+.hm-btn--primary:hover { background: var(--color-accent-hover); }
+.hm-btn--primary:focus-visible {
+    outline: 2px solid rgba(14, 208, 168, 0.35);
+    outline-offset: 3px;
+}
+
+/* ---------- Variant: Secondary (outlined, translucent) ---------- */
+.hm-btn--secondary {
+    background: var(--color-surface-input);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: var(--color-text-primary);
+    font-weight: var(--weight-medium);
+}
+.hm-btn--secondary:hover {
+    border-color: rgba(255, 255, 255, 0.55);
+    background: rgba(15, 23, 42, 0.65);
+}
+
+/* ---------- Variant: Ghost ---------- */
+.hm-btn--ghost {
+    background: transparent;
+    color: var(--color-accent);
+    font-weight: var(--weight-bold);
+    padding: var(--space-2) var(--space-3);
+    height: auto;
+}
+.hm-btn--ghost:hover { color: var(--color-accent-hover); }
+
+/* ---------- Variant: Icon (circle) ---------- */
+.hm-btn--icon {
+    width: var(--control-height-md);
+    height: var(--control-height-md);
+    padding: 0;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: var(--color-text-on-accent);
+    box-shadow: var(--shadow-accent);
+}
+.hm-btn--icon.hm-btn--sm { width: var(--control-height-sm); height: var(--control-height-sm); }
+.hm-btn--icon.hm-btn--lg { width: var(--control-height-lg); height: var(--control-height-lg); }
+
+/* ---------- Icon slot inside button ---------- */
+.hm-btn svg,
+.hm-btn img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+.hm-btn--sm svg,
+.hm-btn--sm img { width: 16px; height: 16px; }

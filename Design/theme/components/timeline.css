@@ -1,0 +1,167 @@
+/* ============================================
+ * Component: Timeline (vertical step progress)
+ * Use:
+ *   <ol class="hm-timeline">
+ *     <li class="hm-timeline__item hm-timeline__item--completed">
+ *       <span class="hm-timeline__marker"><svg>check</svg></span>
+ *       <div class="hm-timeline__body">
+ *         <div class="hm-timeline__row">
+ *           <span class="hm-timeline__title">1. Breed Date</span>
+ *           <span class="hm-badge hm-badge--accent">COMPLETED</span>
+ *         </div>
+ *         <div class="hm-timeline__meta">Sched: Sep 24  Actual: Sep 24</div>
+ *       </div>
+ *     </li>
+ *   </ol>
+ * ============================================ */
+
+.hm-timeline {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+}
+
+.hm-timeline__item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-3) 0;
+    position: relative;
+}
+/* Note: no connecting line between markers per Figma spec */
+
+/* ---------- Marker circle ---------- */
+.hm-timeline__marker {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-surface-input);
+    border: 2px solid var(--color-border-input);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--color-text-secondary);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-caption);
+    position: relative;
+    z-index: 1;
+    transition: all var(--duration-fast) var(--ease);
+}
+.hm-timeline__marker svg { width: 18px; height: 18px; }
+
+.hm-timeline__item--completed .hm-timeline__marker {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: #00241D;
+}
+
+.hm-timeline__item--active .hm-timeline__marker {
+    background: var(--color-surface-input);
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    box-shadow: 0 0 0 4px var(--color-accent-muted);
+}
+
+/* When a timeline marker uses a bundled image asset (overrides circle styles) */
+.hm-timeline__marker--image {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0;
+    width: 44px;
+    height: 44px;
+}
+.hm-timeline__marker--image img {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    display: block;
+}
+
+/* ---------- Body ---------- */
+.hm-timeline__body {
+    flex: 1;
+    padding-top: 8px;
+    min-width: 0;
+}
+
+.hm-timeline__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-1);
+}
+
+.hm-timeline__title {
+    font-family: var(--font-body);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-body);
+    color: var(--color-text-primary);
+    line-height: 1.2;
+}
+.hm-timeline__item--upcoming .hm-timeline__title {
+    color: var(--color-text-secondary);
+}
+
+.hm-timeline__meta {
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    color: var(--color-text-muted);
+    line-height: 1.3;
+}
+
+.hm-timeline__meta-accent {
+    color: var(--color-accent);
+    font-weight: var(--weight-medium);
+}
+
+
+/* ============================================
+ * Component: Stepper (horizontal step indicator)
+ * For Evans import 5-step flow.
+ * ============================================ */
+
+.hm-stepper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    position: relative;
+    padding: 0 var(--space-5);
+}
+.hm-stepper__track {
+    position: absolute;
+    top: 20px;
+    left: calc(var(--space-5) + 20px);
+    right: calc(var(--space-5) + 20px);
+    height: 2px;
+    background: var(--color-border-input);
+}
+.hm-stepper__fill {
+    position: absolute;
+    top: 20px;
+    left: calc(var(--space-5) + 20px);
+    height: 2px;
+    background: var(--color-accent);
+    transition: width var(--duration-slow) var(--ease);
+}
+.hm-stepper__node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    z-index: 2;
+}
+.hm-stepper__label {
+    font-family: var(--font-body);
+    font-size: var(--text-micro);
+    font-weight: var(--weight-medium);
+    color: var(--color-text-muted);
+}
+.hm-stepper__node--active .hm-stepper__label,
+.hm-stepper__node--completed .hm-stepper__label {
+    color: var(--color-text-primary);
+}

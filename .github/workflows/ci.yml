@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  core-linux:
+    name: HerdMasterCore (Linux)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: swift-actions/setup-swift@v2
+        with:
+          swift-version: "6.0.3"
+      - run: swift --version
+      - name: Run Core tests
+        run: swift test --filter HerdMasterCoreTests
+
+  ui-macos:
+    name: HerdMasterUI build (macOS)
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select Xcode 16
+        run: sudo xcode-select -s /Applications/Xcode_16.app
+      - name: Resolve dependencies
+        run: swift package resolve
+      - name: Build entire package
+        run: swift build

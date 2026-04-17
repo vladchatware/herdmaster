@@ -1,0 +1,12 @@
+# swift-format rules — opinionated but matches mainstream iOS teams
+--swiftversion 6.0
+--indent 4
+--maxwidth 120
+--wraparguments before-first
+--wrapcollections before-first
+--closingparen same-line
+--stripunusedargs closure-only
+--self init-only
+--importgrouping testable-last
+--commas inline
+--trimwhitespace always

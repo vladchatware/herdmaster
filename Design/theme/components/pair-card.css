@@ -1,0 +1,246 @@
+/* ============================================
+ * Component: PairCard
+ * Two avatars + match indicator between them.
+ * Used on breeding detail screens.
+ *
+ * Use:
+ *   <div class="hm-pair-card">
+ *     <div class="hm-pair-card__side">
+ *       <div class="hm-avatar hm-avatar--lg hm-avatar--buck">
+ *         <img class="hm-avatar__img" src="...">
+ *         <span class="hm-avatar__sex hm-avatar__sex--buck">♂</span>
+ *       </div>
+ *       <div class="hm-pair-card__name">Barnaby</div>
+ *       <div class="hm-pair-card__sex-label hm-text-accent">BUCK</div>
+ *     </div>
+ *     <div class="hm-pair-card__match">
+ *       <div class="hm-pair-card__match-icon"><svg>heart</svg></div>
+ *       <div class="hm-pair-card__match-label">MATCH</div>
+ *     </div>
+ *     <div class="hm-pair-card__side">...</div>
+ *   </div>
+ * ============================================ */
+
+.hm-pair-card {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: var(--space-2);
+    align-items: center;
+    padding: var(--space-5) var(--space-4);
+    background: rgba(41, 166, 161, 0.10);     /* #29A6A11A */
+    border: 1px solid var(--color-border-input);
+    border-radius: var(--radius-lg);
+    position: relative;
+}
+
+/* Dashed vertical divider — spans full card height behind the match icon */
+.hm-pair-card::before {
+    content: '';
+    position: absolute;
+    top: var(--space-4);
+    bottom: var(--space-4);
+    left: 50%;
+    width: 1px;
+    border-left: 1px dashed var(--color-border-input);
+    z-index: 0;
+}
+
+.hm-pair-card__side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.hm-pair-card__name {
+    font-family: var(--font-body);
+    font-size: var(--text-body-lg);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    line-height: 1;
+    margin-top: var(--space-2);
+}
+
+.hm-pair-card__name--doe {
+    color: var(--color-ped-female);
+}
+
+.hm-pair-card__sex-label {
+    font-family: var(--font-body);
+    font-size: var(--text-micro);
+    font-weight: var(--weight-bold);
+    letter-spacing: 0.12em;
+    color: var(--color-accent);
+}
+
+.hm-pair-card__sex-label--doe {
+    color: var(--color-ped-female);
+}
+
+/* ---------- Match indicator (center) ---------- */
+.hm-pair-card__match {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+    z-index: 1;
+}
+
+.hm-pair-card__match-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(41, 166, 161, 0.18);
+    border: 2px solid rgba(94, 234, 212, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #5EEAD4;
+}
+.hm-pair-card__match-icon svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+.hm-pair-card__match-label {
+    font-family: var(--font-body);
+    font-size: 9px;
+    font-weight: var(--weight-bold);
+    letter-spacing: 0.12em;
+    color: #5EEAD4;
+    margin-top: 2px;
+}
+
+
+/* ============================================
+ * Component: KindlingCard (highlighted accent card)
+ * Used for "Expected Kindling Date" callout.
+ *
+ * Use:
+ *   <div class="hm-kindling-card">
+ *     <div class="hm-kindling-card__label">EXPECTED KINDLING DATE</div>
+ *     <div class="hm-kindling-card__row">
+ *       <div class="hm-kindling-card__date">Oct 24, 2023</div>
+ *       <div class="hm-kindling-card__chip">In 12 Days</div>
+ *     </div>
+ *   </div>
+ * ============================================ */
+
+.hm-kindling-card {
+    background: var(--color-accent);
+    border-radius: var(--radius-md);
+    padding: var(--space-4) var(--space-5);
+    color: #00241D;
+    box-shadow: 0 4px 16px rgba(41, 166, 161, 0.18);
+}
+
+.hm-kindling-card__label {
+    font-family: var(--font-body);
+    font-size: var(--text-micro);
+    font-weight: var(--weight-bold);
+    letter-spacing: 0.1em;
+    opacity: 0.75;
+    margin-bottom: var(--space-2);
+}
+
+.hm-kindling-card__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+}
+
+.hm-kindling-card__date {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 36px;
+    letter-spacing: 0;
+}
+
+.hm-kindling-card__chip {
+    background: rgba(0, 36, 29, 0.18);
+    color: #00241D;
+    padding: 6px var(--space-3);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    font-weight: var(--weight-bold);
+    white-space: nowrap;
+}
+
+
+/* ============================================
+ * Component: KitCard (litter row item)
+ * Avatar + name + meta + status badge
+ *
+ * Use:
+ *   <div class="hm-kit-card">
+ *     <div class="hm-avatar hm-avatar--md">...</div>
+ *     <div class="hm-kit-card__body">
+ *       <div class="hm-kit-card__name">Max</div>
+ *       <div class="hm-kit-card__meta">Date Bred: Apr 10, 2024</div>
+ *     </div>
+ *     <span class="hm-badge hm-badge--danger">Missed</span>
+ *   </div>
+ * ============================================ */
+
+.hm-kit-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    background: var(--color-surface-card-solid);
+    border: 1px solid var(--color-border-hair);
+    border-radius: var(--radius-md);
+}
+
+.hm-kit-card__body {
+    flex: 1;
+    min-width: 0;
+}
+
+.hm-kit-card__name {
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    line-height: 1;
+    margin-bottom: var(--space-1);
+}
+
+.hm-kit-card__meta {
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    color: var(--color-text-muted);
+}
+
+/* Fixed-width pill so Missed / Alive / Dead line up visually */
+.hm-kit-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 68px;
+    height: 30px;
+    padding: 0 var(--space-3);
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    font-weight: var(--weight-medium);
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+}
+.hm-kit-status--missed {
+    background: var(--color-danger);
+    color: #fff;
+}
+.hm-kit-status--alive {
+    background: var(--color-accent);
+    color: #00241D;
+}
+.hm-kit-status--dead {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--color-text-secondary);
+}
