@@ -1,0 +1,30 @@
+# macOS
+.DS_Store
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Packages/
+Package.resolved
+
+# Xcode
+*.xcodeproj/
+*.xcworkspace/
+DerivedData/
+xcuserdata/
+
+# Python tooling
+__pycache__/
+*.pyc
+
+# Logs + temp
+/tmp/
+*.log
+
+# Big truncated uploads that are now superseded
+Assets/Logos/IMG_7094rhthrt*
+Assets/Logos/herdmaster-logo.svg
+Assets/Logos/herdmaster-logo-fixed.svg
+Assets/Logos/Login*.png
+Assets/Breed*details*asset/Breeding*Details.png
+Assets/Breed*details*asset/breeding-detail-*.png

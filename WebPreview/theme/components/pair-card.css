@@ -1,0 +1,223 @@
+/* ============================================
+ * Component: PairCard
+ * Two avatars + match indicator between them.
+ * Used on breeding detail screens.
+ *
+ * Use:
+ *   <div class="hm-pair-card">
+ *     <div class="hm-pair-card__side">
+ *       <div class="hm-avatar hm-avatar--lg hm-avatar--buck">
+ *         <img class="hm-avatar__img" src="...">
+ *         <span class="hm-avatar__sex hm-avatar__sex--buck">♂</span>
+ *       </div>
+ *       <div class="hm-pair-card__name">Barnaby</div>
+ *       <div class="hm-pair-card__sex-label hm-text-accent">BUCK</div>
+ *     </div>
+ *     <div class="hm-pair-card__match">
+ *       <div class="hm-pair-card__match-icon"><svg>heart</svg></div>
+ *       <div class="hm-pair-card__match-label">MATCH</div>
+ *     </div>
+ *     <div class="hm-pair-card__side">...</div>
+ *   </div>
+ * ============================================ */
+
+.hm-pair-card {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: var(--space-2);
+    align-items: center;
+    padding: var(--space-5);
+    background: var(--color-surface-card-solid);
+    border: 1px solid var(--color-border-hair);
+    border-radius: var(--radius-lg);
+    position: relative;
+}
+
+/* Dotted vertical divider connecting the two avatars */
+.hm-pair-card::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    bottom: 60px;
+    left: 50%;
+    width: 1px;
+    border-left: 1px dashed var(--color-border-input);
+    z-index: 0;
+}
+
+.hm-pair-card__side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.hm-pair-card__name {
+    font-family: var(--font-body);
+    font-size: var(--text-body-lg);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    line-height: 1;
+    margin-top: var(--space-2);
+}
+
+.hm-pair-card__sex-label {
+    font-family: var(--font-body);
+    font-size: var(--text-micro);
+    font-weight: var(--weight-bold);
+    letter-spacing: 0.12em;
+    color: var(--color-accent);
+}
+
+.hm-pair-card__sex-label--doe {
+    color: var(--color-ped-female);
+}
+
+/* ---------- Match indicator (center) ---------- */
+.hm-pair-card__match {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+    z-index: 1;
+}
+
+.hm-pair-card__match-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--color-surface-card-solid);
+    border: 2px solid var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent);
+}
+.hm-pair-card__match-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+.hm-pair-card__match-label {
+    font-family: var(--font-body);
+    font-size: var(--text-micro);
+    font-weight: var(--weight-bold);
+    letter-spacing: 0.12em;
+    color: var(--color-accent);
+    margin-top: 2px;
+}
+
+
+/* ============================================
+ * Component: KindlingCard (highlighted accent card)
+ * Used for "Expected Kindling Date" callout.
+ *
+ * Use:
+ *   <div class="hm-kindling-card">
+ *     <div class="hm-kindling-card__label">EXPECTED KINDLING DATE</div>
+ *     <div class="hm-kindling-card__row">
+ *       <div class="hm-kindling-card__date">Oct 24, 2023</div>
+ *       <div class="hm-kindling-card__chip">In 12 Days</div>
+ *     </div>
+ *   </div>
+ * ============================================ */
+
+.hm-kindling-card {
+    background: var(--color-accent);
+    border-radius: var(--radius-md);
+    padding: var(--space-4) var(--space-5);
+    color: #00241D;
+    box-shadow: 0 4px 16px rgba(41, 166, 161, 0.18);
+}
+
+.hm-kindling-card__label {
+    font-family: var(--font-body);
+    font-size: var(--text-micro);
+    font-weight: var(--weight-bold);
+    letter-spacing: 0.1em;
+    opacity: 0.75;
+    margin-bottom: var(--space-2);
+}
+
+.hm-kindling-card__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+}
+
+.hm-kindling-card__date {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: var(--weight-bold);
+    letter-spacing: -0.01em;
+    line-height: 1;
+}
+
+.hm-kindling-card__chip {
+    background: rgba(0, 36, 29, 0.18);
+    color: #00241D;
+    padding: 6px var(--space-3);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    font-weight: var(--weight-bold);
+    white-space: nowrap;
+}
+
+
+/* ============================================
+ * Component: KitCard (litter row item)
+ * Avatar + name + meta + status badge
+ *
+ * Use:
+ *   <div class="hm-kit-card">
+ *     <div class="hm-avatar hm-avatar--md">...</div>
+ *     <div class="hm-kit-card__body">
+ *       <div class="hm-kit-card__name">Max</div>
+ *       <div class="hm-kit-card__meta">Date Bred: Apr 10, 2024</div>
+ *     </div>
+ *     <span class="hm-badge hm-badge--danger">Missed</span>
+ *   </div>
+ * ============================================ */
+
+.hm-kit-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    background: var(--color-surface-card-solid);
+    border: 1px solid var(--color-border-hair);
+    border-radius: var(--radius-md);
+}
+
+.hm-kit-card__body {
+    flex: 1;
+    min-width: 0;
+}
+
+.hm-kit-card__name {
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-primary);
+    line-height: 1;
+    margin-bottom: var(--space-1);
+}
+
+.hm-kit-card__meta {
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    color: var(--color-text-muted);
+}
+
+.hm-kit-card__status {
+    background: var(--color-danger);
+    color: #fff;
+    border-radius: var(--radius-sm);
+    padding: var(--space-2) var(--space-3);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    font-weight: var(--weight-medium);
+}

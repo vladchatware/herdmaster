@@ -1,0 +1,100 @@
+/* ============================================
+ * Component: Typography
+ * Atomic text styles. Use the one that fits semantically.
+ * ============================================ */
+
+/* ---------- Display (Playfair Display serif) ---------- */
+.hm-display-xl {
+    font-family: var(--font-display);
+    font-weight: var(--weight-semibold);
+    font-size: var(--text-display-lg);
+    letter-spacing: -0.02em;
+    line-height: var(--leading-snug);
+}
+
+.hm-display {
+    font-family: var(--font-display);
+    font-weight: var(--weight-semibold);
+    font-size: var(--text-display);
+    letter-spacing: -0.01em;
+    line-height: var(--leading-snug);
+}
+
+.hm-display-sm {
+    font-family: var(--font-display);
+    font-weight: var(--weight-semibold);
+    font-size: var(--text-display-sm);
+    letter-spacing: -0.01em;
+    line-height: var(--leading-snug);
+}
+
+.hm-heading {
+    font-family: var(--font-display);
+    font-weight: var(--weight-semibold);
+    font-size: var(--text-heading);
+    letter-spacing: -0.01em;
+    line-height: var(--leading-snug);
+}
+
+.hm-title {
+    font-family: var(--font-display);
+    font-weight: var(--weight-semibold);
+    font-size: var(--text-title);
+}
+
+/* ---------- Body (DM Sans) ---------- */
+.hm-subtitle {
+    font-family: var(--font-body);
+    font-weight: var(--weight-regular);
+    font-size: var(--text-body-lg);
+    line-height: var(--leading-tight);
+    color: var(--color-text-secondary);
+    text-align: center;
+}
+
+.hm-body {
+    font-family: var(--font-body);
+    font-weight: var(--weight-regular);
+    font-size: var(--text-body);
+    line-height: var(--leading-normal);
+}
+
+.hm-body-strong {
+    font-family: var(--font-body);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-body);
+    line-height: var(--leading-tight);
+}
+
+.hm-caption {
+    font-family: var(--font-body);
+    font-weight: var(--weight-regular);
+    font-size: var(--text-caption);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-normal);
+}
+
+.hm-eyebrow {
+    font-family: var(--font-body);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-micro);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    line-height: var(--leading-tight);
+}
+
+/* ---------- Color modifiers ---------- */
+.hm-text-primary { color: var(--color-text-primary); }
+.hm-text-secondary { color: var(--color-text-secondary); }
+.hm-text-muted { color: var(--color-text-muted); }
+.hm-text-accent { color: var(--color-accent); }
+.hm-text-success { color: var(--color-success); }
+.hm-text-warning { color: var(--color-warning); }
+.hm-text-danger { color: var(--color-danger); }
+.hm-text-gold { color: var(--color-gold); }
+
+/* ---------- Alignment ---------- */
+.hm-text-center { text-align: center; }
+.hm-text-left { text-align: left; }
+.hm-text-right { text-align: right; }

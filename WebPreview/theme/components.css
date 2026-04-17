@@ -1,0 +1,16 @@
+/* ============================================
+ * Components aggregator
+ * Import each component from components/ here.
+ * Order: low-level primitives → composed components.
+ * ============================================ */
+
+@import url('components/typography.css');
+@import url('components/layout.css');
+@import url('components/surface.css');
+@import url('components/button.css');
+@import url('components/input.css');
+@import url('components/badge.css');
+@import url('components/avatar.css');
+@import url('components/nav-bar.css');
+@import url('components/pair-card.css');
+@import url('components/timeline.css');

@@ -1,0 +1,61 @@
+/* ============================================
+ * Component: Layout primitives
+ * Flex + grid helpers to avoid custom CSS per screen.
+ * ============================================ */
+
+.hm-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+.hm-stack--gap-1 { gap: var(--space-1); }
+.hm-stack--gap-2 { gap: var(--space-2); }
+.hm-stack--gap-3 { gap: var(--space-3); }
+.hm-stack--gap-4 { gap: var(--space-4); }
+.hm-stack--gap-5 { gap: var(--space-5); }
+.hm-stack--gap-6 { gap: var(--space-6); }
+.hm-stack--gap-8 { gap: var(--space-8); }
+
+.hm-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-3);
+}
+.hm-row--gap-1 { gap: var(--space-1); }
+.hm-row--gap-2 { gap: var(--space-2); }
+.hm-row--gap-3 { gap: var(--space-3); }
+.hm-row--gap-4 { gap: var(--space-4); }
+
+.hm-row--between { justify-content: space-between; }
+.hm-row--around { justify-content: space-around; }
+.hm-row--center { justify-content: center; }
+.hm-row--start { justify-content: flex-start; }
+.hm-row--end { justify-content: flex-end; }
+
+.hm-row--top { align-items: flex-start; }
+.hm-row--middle { align-items: center; }
+.hm-row--bottom { align-items: flex-end; }
+
+.hm-grid {
+    display: grid;
+    gap: var(--space-3);
+}
+.hm-grid--2 { grid-template-columns: 1fr 1fr; }
+.hm-grid--3 { grid-template-columns: 1fr 1fr 1fr; }
+.hm-grid--4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+.hm-fill { flex: 1; min-width: 0; }
+.hm-center { margin: 0 auto; }
+
+/* Scroll region with hidden scrollbar */
+.hm-scroll {
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+.hm-scroll::-webkit-scrollbar { display: none; }
+
+/* Spacer that fills flex parent */
+.hm-spacer { flex: 1; }

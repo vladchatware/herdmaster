@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HerdMaster — Animal Detail</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../shell.css">
+<style>
+.animal-screen {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-base);
+}
+
+.nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px 8px;
+}
+.icon-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    cursor: pointer;
+}
+.icon-btn svg { width: 18px; height: 18px; }
+.nav-title {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.pair-header {
+    padding: 16px 20px 20px;
+    text-align: center;
+}
+
+.pair-photos {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 12px;
+    position: relative;
+}
+.pair-photos::after {
+    content: '×';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--accent);
+    font-size: 24px;
+    font-weight: 300;
+    text-shadow: 0 0 10px rgba(14, 208, 168, 0.6);
+    pointer-events: none;
+    z-index: 3;
+}
+
+.rabbit-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #8B7355 0%, #5A4737 100%);
+    border: 3px solid var(--bg-base);
+    box-shadow: 0 0 0 2px var(--accent);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.rabbit-avatar.doe {
+    box-shadow: 0 0 0 2px #EC4899;
+}
+.rabbit-avatar svg {
+    width: 54px;
+    height: 54px;
+    fill: rgba(255, 255, 255, 0.9);
+}
+.rabbit-name-tag {
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: #00241D;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: var(--r-full);
+    letter-spacing: 0.04em;
+}
+.rabbit-name-tag.doe { background: #EC4899; color: #FFF; }
+
+.pair-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-top: 12px;
+}
+.pair-subtitle {
+    color: var(--text-muted);
+    font-size: 12px;
+    margin-top: 2px;
+}
+
+.tab-nav {
+    display: flex;
+    padding: 0 20px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+.tab-item {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+}
+.tab-item.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    font-weight: 600;
+}
+
+.scroll-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 20px 100px;
+}
+
+.kindling-card {
+    background: linear-gradient(135deg, var(--accent) 0%, #0AB891 100%);
+    border-radius: var(--r-lg);
+    padding: 16px;
+    color: #00241D;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-glow-teal);
+}
+.kindling-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    opacity: 0.75;
+    margin-bottom: 4px;
+}
+.kindling-date {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+.kindling-days {
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0.85;
+    margin-top: 2px;
+}
+
+.tracking-title {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 14px;
+}
+
+.step-progress {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.step-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding-bottom: 16px;
+    position: relative;
+}
+.step-row:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 32px;
+    bottom: -4px;
+    width: 2px;
+    background: var(--border-default);
+}
+.step-row.completed:not(:last-child)::before {
+    background: var(--accent);
+}
+
+.step-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 2px solid var(--border-default);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    z-index: 2;
+    position: relative;
+}
+.step-row.completed .step-circle {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #00241D;
+}
+.step-row.active .step-circle {
+    background: var(--bg-card);
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(14, 208, 168, 0.15);
+}
+.step-circle svg {
+    width: 14px;
+    height: 14px;
+}
+
+.step-content {
+    flex: 1;
+    padding-top: 4px;
+}
+.step-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+.step-row.pending .step-label { color: var(--text-muted); }
+
+.step-date {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.step-badge {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 2px 8px;
+    border-radius: var(--r-full);
+    margin-left: 6px;
+    vertical-align: 2px;
+}
+.step-badge.done {
+    background: var(--accent-muted);
+    color: var(--accent);
+}
+.step-badge.active {
+    background: var(--warning-muted);
+    color: var(--warning);
+}
+
+.litter-section {
+    margin-top: 24px;
+}
+.litter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.litter-header h3 {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 600;
+}
+.view-all-link {
+    font-size: 12px;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.kit-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--r-md);
+    margin-bottom: 6px;
+}
+.kit-mini-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #8B7355 0%, #5A4737 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.kit-mini-avatar svg { width: 20px; height: 20px; fill: rgba(255,255,255,0.9); }
+
+.kit-info { flex: 1; }
+.kit-name {
+    font-size: 13px;
+    font-weight: 600;
+}
+.kit-meta {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+.kit-tag {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 3px 8px;
+    border-radius: var(--r-full);
+}
+.kit-tag.alive { background: var(--accent-muted); color: var(--accent); }
+.kit-tag.sold { background: rgba(212, 169, 74, 0.15); color: var(--gold); }
+.kit-tag.dead { background: var(--danger-muted); color: var(--danger); }
+</style>
+</head>
+<body>
+
+<div class="page">
+    <div class="page-header">
+        <h1>Animal Detail — Breeding View</h1>
+        <p>Pair header with live glow, expected kindling countdown, 6-step breeding progress with vertical timeline, live litter roster.</p>
+        <div class="meta">AnimalDetailView.swift · BreedingStepIndicator.swift</div>
+    </div>
+
+    <div class="device-grid">
+        <div>
+            <div class="device">
+                <div class="status-bar">
+                    <span class="time">9:41</span>
+                    <div class="icons">
+                        <svg viewBox="0 0 18 12"><path d="M2 9h2v3H2zM6 6h2v6H6zM10 3h2v9h-2zM14 0h2v12h-2z"/></svg>
+                        <svg viewBox="0 0 16 12"><path d="M8 2.5c2 0 3.8.8 5.2 2L15 3a10 10 0 0 0-14 0l1.8 1.5C4.2 3.3 6 2.5 8 2.5zm0 3c1.4 0 2.6.5 3.5 1.3l1.8-1.5a8 8 0 0 0-10.6 0L4.5 6.8c1-.8 2.1-1.3 3.5-1.3zm0 3c.8 0 1.5.3 2 .7l1.8-1.5a6 6 0 0 0-7.6 0L6 9.2c.5-.4 1.2-.7 2-.7zm0 3a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
+                        <div class="battery"><span class="battery-fill"></span></div>
+                    </div>
+                </div>
+                <div class="screen-content">
+                    <div class="animal-screen">
+                        <div class="nav-bar">
+                            <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+                            <span class="nav-title">Breeding</span>
+                            <button class="icon-btn"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg></button>
+                        </div>
+
+                        <div class="pair-header">
+                            <div class="pair-photos">
+                                <div class="rabbit-avatar">
+                                    <svg viewBox="0 0 24 24"><ellipse cx="8" cy="8" rx="2" ry="6" transform="rotate(-15 8 8)"/><ellipse cx="16" cy="8" rx="2" ry="6" transform="rotate(15 16 8)"/><circle cx="12" cy="14" r="6"/><circle cx="10" cy="13" r="1" fill="#2D2D2D"/><circle cx="14" cy="13" r="1" fill="#2D2D2D"/></svg>
+                                    <div class="rabbit-name-tag">BARNABY</div>
+                                </div>
+                                <div class="rabbit-avatar doe">
+                                    <svg viewBox="0 0 24 24"><ellipse cx="8" cy="8" rx="2" ry="6" transform="rotate(-15 8 8)"/><ellipse cx="16" cy="8" rx="2" ry="6" transform="rotate(15 16 8)"/><circle cx="12" cy="14" r="6"/><circle cx="10" cy="13" r="1" fill="#2D2D2D"/><circle cx="14" cy="13" r="1" fill="#2D2D2D"/></svg>
+                                    <div class="rabbit-name-tag doe">LUNA</div>
+                                </div>
+                            </div>
+                            <div class="pair-title">Barnaby × Luna</div>
+                            <div class="pair-subtitle">Holland Lop · Bred Sep 23, 2025</div>
+                        </div>
+
+                        <div class="tab-nav">
+                            <div class="tab-item">Details</div>
+                            <div class="tab-item">Pedigree</div>
+                            <div class="tab-item active">Breeding</div>
+                            <div class="tab-item">Health</div>
+                        </div>
+
+                        <div class="scroll-body">
+                            <div class="kindling-card">
+                                <div class="kindling-label">EXPECTED KINDLING DATE</div>
+                                <div class="kindling-date">Oct 24, 2025</div>
+                                <div class="kindling-days">in 12 days</div>
+                            </div>
+
+                            <div class="tracking-title">Tracking Progress</div>
+
+                            <div class="step-progress">
+                                <div class="step-row completed">
+                                    <div class="step-circle">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+                                    </div>
+                                    <div class="step-content">
+                                        <div class="step-label">1. Breed Date <span class="step-badge done">COMPLETED</span></div>
+                                        <div class="step-date">Completed Sep 23, 2025</div>
+                                    </div>
+                                </div>
+
+                                <div class="step-row active">
+                                    <div class="step-circle">2</div>
+                                    <div class="step-content">
+                                        <div class="step-label">2. Palpation <span class="step-badge active">ACTIVE</span></div>
+                                        <div class="step-date">Scheduled Oct 7, 2025</div>
+                                    </div>
+                                </div>
+
+                                <div class="step-row pending">
+                                    <div class="step-circle">3</div>
+                                    <div class="step-content">
+                                        <div class="step-label">3. Nest Box</div>
+                                        <div class="step-date">Due Oct 19, 2025</div>
+                                    </div>
+                                </div>
+
+                                <div class="step-row pending">
+                                    <div class="step-circle">4</div>
+                                    <div class="step-content">
+                                        <div class="step-label">4. Kindling</div>
+                                        <div class="step-date">Expected Oct 24, 2025</div>
+                                    </div>
+                                </div>
+
+                                <div class="step-row pending">
+                                    <div class="step-circle">5</div>
+                                    <div class="step-content">
+                                        <div class="step-label">5. Wean</div>
+                                        <div class="step-date">Planned Nov 21, 2025</div>
+                                    </div>
+                                </div>
+
+                                <div class="step-row pending">
+                                    <div class="step-circle">6</div>
+                                    <div class="step-content">
+                                        <div class="step-label">6. Rebreed</div>
+                                        <div class="step-date">Planned Dec 15, 2025</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="litter-section">
+                                <div class="litter-header">
+                                    <h3>Litter Arrived</h3>
+                                    <a href="#" class="view-all-link">View All</a>
+                                </div>
+                                <div class="kit-row">
+                                    <div class="kit-mini-avatar"><svg viewBox="0 0 24 24"><ellipse cx="8" cy="8" rx="2" ry="6" transform="rotate(-15 8 8)"/><ellipse cx="16" cy="8" rx="2" ry="6" transform="rotate(15 16 8)"/><circle cx="12" cy="14" r="6"/></svg></div>
+                                    <div class="kit-info">
+                                        <div class="kit-name">Max</div>
+                                        <div class="kit-meta">Buck · Born Sep 23, 2025</div>
+                                    </div>
+                                    <span class="kit-tag alive">ACTIVE</span>
+                                </div>
+                                <div class="kit-row">
+                                    <div class="kit-mini-avatar"><svg viewBox="0 0 24 24"><ellipse cx="8" cy="8" rx="2" ry="6" transform="rotate(-15 8 8)"/><ellipse cx="16" cy="8" rx="2" ry="6" transform="rotate(15 16 8)"/><circle cx="12" cy="14" r="6"/></svg></div>
+                                    <div class="kit-info">
+                                        <div class="kit-name">Doe</div>
+                                        <div class="kit-meta">Doe · Born Sep 23, 2025</div>
+                                    </div>
+                                    <span class="kit-tag sold">SOLD</span>
+                                </div>
+                                <div class="kit-row">
+                                    <div class="kit-mini-avatar"><svg viewBox="0 0 24 24"><ellipse cx="8" cy="8" rx="2" ry="6" transform="rotate(-15 8 8)"/><ellipse cx="16" cy="8" rx="2" ry="6" transform="rotate(15 16 8)"/><circle cx="12" cy="14" r="6"/></svg></div>
+                                    <div class="kit-info">
+                                        <div class="kit-name">Buck</div>
+                                        <div class="kit-meta">Buck · Born Sep 23, 2025</div>
+                                    </div>
+                                    <span class="kit-tag dead">DEAD</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="home-indicator"></div>
+                </div>
+            </div>
+            <div class="device-label">AnimalDetailView.swift · BreedingTab</div>
+            <div class="device-description">Paired avatars with sex-coded glows and name tags. Gradient kindling countdown card. Vertical step timeline with active pulse. Kit roster with status tags.</div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

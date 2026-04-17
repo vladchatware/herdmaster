@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HerdMaster — Breed Details</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../theme/index.css">
+
+<style>
+/* Screen-local composition only. All primitives come from theme/. */
+.breed-details {
+    flex: 1;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+.breed-details::-webkit-scrollbar { display: none; }
+
+.breed-details__body {
+    padding: 0 var(--space-5) var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.breed-details__section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: var(--space-2);
+    margin-bottom: calc(var(--space-1) * -1);
+}
+</style>
+</head>
+<body>
+
+<div class="hm-page">
+    <div class="hm-page__header">
+        <h1>Breed Details — Max X Bella</h1>
+        <p>Built on the same theme components as the login screen. Pair card, kindling callout, vertical timeline, kit roster — every primitive comes from <code>theme/components/*</code>.</p>
+        <div class="hm-meta">screens/breed-details.html · hm-navbar · hm-pair-card · hm-kindling-card · hm-timeline · hm-kit-card</div>
+    </div>
+
+    <div class="hm-device-grid">
+        <div>
+            <div class="hm-device">
+                <div class="hm-statusbar">
+                    <span class="hm-statusbar__time">11:30</span>
+                    <div class="hm-statusbar__icons">
+                        <svg viewBox="0 0 18 12"><path d="M2 9h2v3H2zM6 6h2v6H6zM10 3h2v9h-2zM14 0h2v12h-2z"/></svg>
+                        <svg viewBox="0 0 16 12"><path d="M8 2.5c2 0 3.8.8 5.2 2L15 3a10 10 0 0 0-14 0l1.8 1.5C4.2 3.3 6 2.5 8 2.5zm0 3c1.4 0 2.6.5 3.5 1.3l1.8-1.5a8 8 0 0 0-10.6 0L4.5 6.8c1-.8 2.1-1.3 3.5-1.3zm0 3c.8 0 1.5.3 2 .7l1.8-1.5a6 6 0 0 0-7.6 0L6 9.2c.5-.4 1.2-.7 2-.7zm0 3a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
+                        <div class="hm-battery"><span class="hm-battery__fill"></span></div>
+                    </div>
+                </div>
+
+                <div class="hm-screen">
+                    <nav class="hm-navbar">
+                        <button class="hm-navbar__back" aria-label="Back">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M19 12H5M12 19l-7-7 7-7"/>
+                            </svg>
+                        </button>
+                        <h1 class="hm-navbar__title">Max X Bella</h1>
+                        <button class="hm-navbar__action" aria-hidden="true"></button>
+                    </nav>
+
+                    <div class="breed-details">
+                        <div class="breed-details__body">
+
+                            <!-- Pair card -->
+                            <div class="hm-pair-card">
+                                <div class="hm-pair-card__side">
+                                    <div class="hm-avatar hm-avatar--lg hm-avatar--buck">
+                                        <img class="hm-avatar__img" src="../assets/photos/rabbit-barnaby.png" alt="Barnaby">
+                                        <span class="hm-avatar__sex hm-avatar__sex--buck">♂</span>
+                                    </div>
+                                    <div class="hm-pair-card__name">Barnaby</div>
+                                    <div class="hm-pair-card__sex-label">BUCK</div>
+                                </div>
+
+                                <div class="hm-pair-card__match">
+                                    <div class="hm-pair-card__match-icon">
+                                        <svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.5-7 11-7 11z"/></svg>
+                                    </div>
+                                    <div class="hm-pair-card__match-label">MATCH</div>
+                                </div>
+
+                                <div class="hm-pair-card__side">
+                                    <div class="hm-avatar hm-avatar--lg hm-avatar--doe">
+                                        <img class="hm-avatar__img" src="../assets/photos/rabbit-luna.png" alt="Luna">
+                                        <span class="hm-avatar__sex hm-avatar__sex--doe">♀</span>
+                                    </div>
+                                    <div class="hm-pair-card__name">Luna</div>
+                                    <div class="hm-pair-card__sex-label hm-pair-card__sex-label--doe">DOE</div>
+                                </div>
+                            </div>
+
+                            <!-- Kindling callout -->
+                            <div class="hm-kindling-card">
+                                <div class="hm-kindling-card__label">EXPECTED KINDLING DATE</div>
+                                <div class="hm-kindling-card__row">
+                                    <div class="hm-kindling-card__date">Oct 24, 2023</div>
+                                    <div class="hm-kindling-card__chip">In 12 Days</div>
+                                </div>
+                            </div>
+
+                            <!-- Tracking Progress header -->
+                            <div class="breed-details__section-header">
+                                <span class="hm-eyebrow">Tracking Progress</span>
+                                <span class="hm-badge hm-badge--accent">Upcoming</span>
+                            </div>
+
+                            <!-- Vertical timeline -->
+                            <ol class="hm-timeline">
+                                <li class="hm-timeline__item hm-timeline__item--completed">
+                                    <span class="hm-timeline__marker">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                                    </span>
+                                    <div class="hm-timeline__body">
+                                        <div class="hm-timeline__row">
+                                            <span class="hm-timeline__title">1. Breed Date</span>
+                                            <span class="hm-badge hm-badge--neutral">COMPLETED</span>
+                                        </div>
+                                        <div class="hm-timeline__meta">
+                                            Sched: Sep 24 &nbsp;<span class="hm-timeline__meta-accent">Actual: Sep 24</span>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="hm-timeline__item hm-timeline__item--completed">
+                                    <span class="hm-timeline__marker">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                                    </span>
+                                    <div class="hm-timeline__body">
+                                        <div class="hm-timeline__row">
+                                            <span class="hm-timeline__title">2. Palpate</span>
+                                            <span class="hm-badge hm-badge--neutral">COMPLETED</span>
+                                        </div>
+                                        <div class="hm-timeline__meta">
+                                            Sched: Oct 08 &nbsp;<span class="hm-timeline__meta-accent">Actual: Oct 09</span>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="hm-timeline__item hm-timeline__item--active">
+                                    <span class="hm-timeline__marker">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10h18M5 10v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V10M8 10V6a4 4 0 0 1 8 0v4"/></svg>
+                                    </span>
+                                    <div class="hm-timeline__body">
+                                        <div class="hm-timeline__row">
+                                            <span class="hm-timeline__title">3. Nest Box</span>
+                                            <span class="hm-badge hm-badge--accent">ACTIVE</span>
+                                        </div>
+                                        <div class="hm-timeline__meta">Scheduled: Oct 21, 2023</div>
+                                    </div>
+                                </li>
+
+                                <li class="hm-timeline__item hm-timeline__item--upcoming">
+                                    <span class="hm-timeline__marker">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>
+                                    </span>
+                                    <div class="hm-timeline__body">
+                                        <div class="hm-timeline__row">
+                                            <span class="hm-timeline__title">4. Kindling</span>
+                                            <span class="hm-badge hm-badge--neutral">UPCOMING</span>
+                                        </div>
+                                        <div class="hm-timeline__meta">Scheduled: Oct 24, 2023</div>
+                                    </div>
+                                </li>
+
+                                <li class="hm-timeline__item hm-timeline__item--upcoming">
+                                    <span class="hm-timeline__marker">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 2l2 2 2-2M11 2l2 2 2-2M3 14a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v8H3v-8zM11 14a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v8h-8v-8z"/></svg>
+                                    </span>
+                                    <div class="hm-timeline__body">
+                                        <div class="hm-timeline__row">
+                                            <span class="hm-timeline__title">5. Wean</span>
+                                            <span class="hm-badge hm-badge--neutral">UPCOMING</span>
+                                        </div>
+                                        <div class="hm-timeline__meta">Scheduled: Dec 05, 2023</div>
+                                    </div>
+                                </li>
+
+                                <li class="hm-timeline__item hm-timeline__item--upcoming">
+                                    <span class="hm-timeline__marker">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-2.64-6.36L21 8M21 3v5h-5"/></svg>
+                                    </span>
+                                    <div class="hm-timeline__body">
+                                        <div class="hm-timeline__row">
+                                            <span class="hm-timeline__title">6. Rebreed</span>
+                                            <span class="hm-badge hm-badge--neutral">UPCOMING</span>
+                                        </div>
+                                        <div class="hm-timeline__meta">Scheduled: Dec 12, 2023</div>
+                                    </div>
+                                </li>
+                            </ol>
+
+                            <!-- Litter section -->
+                            <div class="breed-details__section-header">
+                                <span class="hm-eyebrow">Litter Arrived</span>
+                                <a href="#" class="hm-link">
+                                    VIEW ALL
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 12px; height: 12px; margin-left: 2px;"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                                </a>
+                            </div>
+
+                            <div class="hm-stack hm-stack--gap-2">
+                                <div class="hm-kit-card">
+                                    <div class="hm-avatar hm-avatar--md hm-avatar--doe">
+                                        <img class="hm-avatar__img" src="../assets/photos/rabbit-luna.png" alt="Max">
+                                    </div>
+                                    <div class="hm-kit-card__body">
+                                        <div class="hm-kit-card__name">Max</div>
+                                        <div class="hm-kit-card__meta">Date Bred: Apr 10, 2024</div>
+                                    </div>
+                                    <span class="hm-kit-card__status">Missed</span>
+                                </div>
+
+                                <div class="hm-kit-card">
+                                    <div class="hm-avatar hm-avatar--md hm-avatar--unknown">
+                                        <img class="hm-avatar__img" src="../assets/photos/rabbit-luna.png" alt="Doe">
+                                    </div>
+                                    <div class="hm-kit-card__body">
+                                        <div class="hm-kit-card__name">Doe</div>
+                                        <div class="hm-kit-card__meta">Date Bred: Mar 18, 2024</div>
+                                    </div>
+                                    <span class="hm-badge hm-badge--success">Success</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hm-home-indicator"></div>
+            </div>
+            <div class="hm-device-label">BreedDetailsView.swift</div>
+            <div class="hm-device-description">Reuses every primitive from login page. Same theme, same tokens, zero duplication.</div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

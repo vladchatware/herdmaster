@@ -1,0 +1,56 @@
+/* ============================================
+ * Component: NavBar (page-level top navigation)
+ * Back button + centered title + optional right icon.
+ *
+ * Use:
+ *   <nav class="hm-navbar">
+ *     <button class="hm-navbar__back"><svg/></button>
+ *     <h1 class="hm-navbar__title">Max X Bella</h1>
+ *     <button class="hm-navbar__action"><svg/></button>
+ *   </nav>
+ * ============================================ */
+
+.hm-navbar {
+    display: grid;
+    grid-template-columns: 44px 1fr 44px;
+    align-items: center;
+    padding: var(--space-3) var(--space-5);
+    gap: var(--space-3);
+}
+
+.hm-navbar__back,
+.hm-navbar__action {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    color: var(--color-text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background var(--duration-fast) var(--ease);
+}
+.hm-navbar__back:hover,
+.hm-navbar__action:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+.hm-navbar__back svg,
+.hm-navbar__action svg {
+    width: 22px;
+    height: 22px;
+}
+
+.hm-navbar__title {
+    font-family: var(--font-display);
+    font-weight: var(--weight-semibold);
+    font-size: var(--text-heading);
+    letter-spacing: -0.01em;
+    text-align: center;
+    line-height: 1;
+    color: var(--color-text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

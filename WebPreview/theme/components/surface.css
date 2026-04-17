@@ -1,0 +1,73 @@
+/* ============================================
+ * Component: Surfaces (card, divider, link)
+ * ============================================ */
+
+/* ---------- Card ---------- */
+.hm-card {
+    background: var(--color-surface-card-solid);
+    border: 1px solid var(--color-border-hair);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+}
+
+.hm-card--glass {
+    background: var(--color-surface-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.hm-card--elevated {
+    background: var(--color-surface-elevated);
+    box-shadow: var(--shadow-sm);
+}
+
+.hm-card--interactive {
+    cursor: pointer;
+    transition: transform var(--duration-fast) var(--ease),
+                border-color var(--duration-fast) var(--ease);
+}
+.hm-card--interactive:hover {
+    border-color: var(--color-border-default);
+    transform: translateY(-1px);
+}
+
+/* ---------- Divider ---------- */
+.hm-divider {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    color: var(--color-text-muted);
+    font-family: var(--font-body);
+    font-size: var(--text-micro);
+    font-weight: var(--weight-medium);
+    letter-spacing: 0.12em;
+}
+.hm-divider::before,
+.hm-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--color-border-hair);
+}
+
+.hm-divider--line {
+    height: 1px;
+    background: var(--color-border-hair);
+}
+
+/* ---------- Link ---------- */
+.hm-link {
+    color: var(--color-accent);
+    font-family: var(--font-body);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-caption);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease);
+}
+.hm-link:hover { color: var(--color-accent-hover); }
+
+.hm-link--muted {
+    color: var(--color-text-secondary);
+    font-weight: var(--weight-medium);
+}
+.hm-link--muted:hover { color: var(--color-text-primary); }

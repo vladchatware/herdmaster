@@ -1,0 +1,181 @@
+/* ============================================
+ * Device frame (iPhone 15 Pro)
+ * Simulated hardware for web preview only.
+ * Swift renders the actual OS chrome natively.
+ * ============================================ */
+
+.hm-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--space-10) var(--space-6);
+    gap: var(--space-10);
+    min-height: 100vh;
+}
+
+.hm-page__header {
+    text-align: center;
+    max-width: 900px;
+    width: 100%;
+}
+.hm-page__header h1 {
+    font-size: var(--text-display-lg);
+    letter-spacing: -0.01em;
+    margin-bottom: var(--space-2);
+}
+.hm-page__header p {
+    color: var(--color-text-secondary);
+    font-size: var(--text-body);
+    line-height: var(--leading-relaxed);
+}
+.hm-page__header .hm-meta {
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--text-micro);
+    margin-top: var(--space-3);
+}
+
+.hm-device-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-12);
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+}
+
+/* ---------- Device shell ---------- */
+.hm-device {
+    width: var(--container-screen);
+    height: var(--container-screen-tall);
+    background: var(--color-surface-page);
+    border-radius: 55px;
+    border: 3px solid #1F2633;
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.04),
+        0 30px 80px rgba(0,0,0,0.6),
+        0 8px 20px rgba(0,0,0,0.4);
+    overflow: hidden;
+    position: relative;
+    font-size: 15px;
+}
+
+.hm-device::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 126px;
+    height: 37px;
+    background: #000;
+    border-radius: 20px;
+    z-index: 100;
+}
+
+.hm-device-label {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: var(--text-micro);
+    margin-top: var(--space-4);
+    font-family: var(--font-mono);
+    letter-spacing: 0.02em;
+}
+
+.hm-device-description {
+    text-align: center;
+    color: var(--color-text-secondary);
+    font-size: var(--text-caption);
+    margin-top: var(--space-1);
+    max-width: var(--container-screen);
+}
+
+/* ---------- iOS status bar ---------- */
+.hm-statusbar {
+    position: relative;
+    height: 54px;
+    padding: 16px var(--space-8) 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: var(--weight-semibold);
+    font-family: -apple-system, 'SF Pro Text', system-ui;
+    color: var(--color-text-primary);
+    z-index: 5;
+}
+.hm-statusbar__time { font-variant-numeric: tabular-nums; }
+.hm-statusbar__icons { display: flex; align-items: center; gap: 6px; }
+.hm-statusbar__icons svg { width: 16px; height: 11px; fill: currentColor; }
+
+.hm-battery {
+    width: 25px;
+    height: 12px;
+    border: 1px solid rgba(255,255,255,0.5);
+    border-radius: 3px;
+    padding: 1px;
+    position: relative;
+}
+.hm-battery::after {
+    content: '';
+    position: absolute;
+    right: -3px;
+    top: 3px;
+    width: 2px;
+    height: 4px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 0 1px 1px 0;
+}
+.hm-battery__fill {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: currentColor;
+    border-radius: 1px;
+}
+
+/* ---------- Screen surface ---------- */
+.hm-screen {
+    height: calc(100% - 54px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-surface-page);
+}
+
+.hm-home-indicator {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 134px;
+    height: 5px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 3px;
+    z-index: 50;
+}
+
+
+/* ============================================
+ * Responsive: smaller device at narrow viewports
+ * ============================================ */
+
+@media (max-width: 440px) {
+    .hm-device {
+        width: min(100vw - 32px, 393px);
+        height: auto;
+        aspect-ratio: 393 / 852;
+        max-height: 90vh;
+    }
+    .hm-page {
+        padding: var(--space-5) var(--space-3);
+        gap: var(--space-6);
+    }
+}
+
+/* Larger displays: shrink slightly so multiple devices fit side-by-side */
+@media (min-width: 1200px) {
+    .hm-device-grid {
+        gap: var(--space-16);
+    }
+}

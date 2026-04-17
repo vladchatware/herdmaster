@@ -1,0 +1,101 @@
+/* ============================================
+ * Component: Input
+ * Use:
+ *   <div class="hm-field">
+ *     <label class="hm-field__label">Email Address</label>
+ *     <div class="hm-field__control">
+ *       <input class="hm-input" type="email" placeholder="you@example.com">
+ *     </div>
+ *     <span class="hm-field__hint">We never share your email.</span>
+ *   </div>
+ *
+ * With suffix icon (password toggle, search, etc):
+ *   <div class="hm-field__control hm-field__control--suffix">
+ *     <input class="hm-input" type="password">
+ *     <button class="hm-field__icon">...</button>
+ *   </div>
+ * ============================================ */
+
+.hm-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.hm-field__label {
+    font-family: var(--font-body);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-body);
+    line-height: var(--leading-tight);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-3);
+}
+
+.hm-field__control {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+}
+
+.hm-field__control--suffix .hm-input {
+    padding-right: 52px;
+}
+
+.hm-field__icon {
+    position: absolute;
+    right: var(--space-4);
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: color var(--duration-fast) var(--ease);
+}
+.hm-field__icon:hover { color: var(--color-text-secondary); }
+.hm-field__icon svg { width: 20px; height: 20px; }
+
+.hm-field__hint {
+    margin-top: var(--space-2);
+    font-size: var(--text-caption);
+    color: var(--color-text-muted);
+}
+
+.hm-field__hint--error { color: var(--color-danger); }
+
+.hm-field__meta {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: var(--space-2);
+}
+
+/* ---------- Input control ---------- */
+.hm-input {
+    width: 100%;
+    height: var(--control-height-lg);
+    padding: 0 var(--space-4);
+    background: var(--color-surface-input);
+    border: 1px solid var(--color-border-input);
+    border-radius: var(--radius-md);
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    line-height: 1;
+    transition: border-color var(--duration-fast) var(--ease),
+                background var(--duration-fast) var(--ease);
+}
+.hm-input:focus { border-color: var(--color-border-focus); }
+.hm-input::placeholder {
+    color: var(--color-text-placeholder);
+}
+
+.hm-input--error { border-color: var(--color-danger); }
+.hm-input--error:focus { border-color: var(--color-danger); }
+
+/* ---------- Sizes ---------- */
+.hm-input--sm { height: var(--control-height-md); }
+.hm-input--lg { height: var(--control-height-xl); }
