@@ -2,7 +2,7 @@
 import Foundation
 import SwiftData
 
-enum Sex: String, Codable, CaseIterable {
+enum RabbitSex: String, Codable, CaseIterable {
     case buck
     case doe
     case unknown
@@ -85,7 +85,7 @@ final class Animal {
     }
 }
 
-enum DeviceIdentity {
+final class DeviceIdentity: @unchecked Sendable {
     static let shared = DeviceIdentity()
     let id: String
 

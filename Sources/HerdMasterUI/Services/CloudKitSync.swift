@@ -5,7 +5,7 @@ import CloudKit
 import SwiftData
 import Combine
 
-final class CloudKitSync {
+final class CloudKitSync: @unchecked Sendable {
     static let shared = CloudKitSync()
 
     private var container: NSPersistentCloudKitContainer?
@@ -37,7 +37,7 @@ final class CloudKitSync {
         }
 
         container.viewContext.automaticallyMergesChangesFromParent = true
-        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
 
         self.container = container
         observeSyncEvents()
