@@ -1,6 +1,6 @@
 import Foundation
 
-public enum Sex: String, Codable, CaseIterable, Sendable {
+public enum EvansSex: String, Codable, CaseIterable, Sendable {
     case buck
     case doe
     case unknown
@@ -14,9 +14,11 @@ public enum Sex: String, Codable, CaseIterable, Sendable {
     }
 }
 
+public typealias Sex = EvansSex
+
 public struct EvansAnimal: Equatable, Sendable {
     public var name: String
-    public var sex: Sex
+    public var sex: EvansSex
     public var color: String?
     public var earNumber: String?
     public var registrationNumber: String?
